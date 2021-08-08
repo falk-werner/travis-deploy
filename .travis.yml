@@ -2,7 +2,7 @@ language: minimal
 dist: bionic
 
 script:
-  - echo "So long, and thanks for all the fish." > my.artifact
+  - echo "So long, and thanks for all the fish." > artifact.txt
 
 before_deploy:
   - git config --local user.name "$GITHUB_USER"
@@ -14,7 +14,7 @@ deploy:
   provider: releases
   api_key: $GITHUB_APIKEY
   file:
-    - my.artifact
+    - artifact.txt
   skip_cleanup: true
   overwrite: true
   on:
