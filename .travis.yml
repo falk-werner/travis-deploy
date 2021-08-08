@@ -1,0 +1,6 @@
+language: minimal
+dist: bionic
+
+script:
+  - echo "So long, and thanks for all the fish." > my.artifact
+
