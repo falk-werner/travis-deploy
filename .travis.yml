@@ -6,7 +6,7 @@ script:
 
 before_deploy:
   - |
-    if [[ "${TRAVIS_TAG" = "" ]]; then
+    if [[ "${TRAVIS_TAG}" = "" ]]; then
       git config --local user.name "${GITHUB_USER}"
       git config --local user.email "${GITHUB_EMAIL}"
       export TRAVIS_TAG=unstable
