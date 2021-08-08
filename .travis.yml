@@ -6,7 +6,7 @@ stages:
     if tag IS blank
 
 script:
-  - echo "So long, and thanks for all the fish." > artifact.txt
+  - echo "So long, and thanks for all the fish!" > artifact.txt
 
 before_deploy:
   - 'curl -XDELETE --header "Authorization: token $GITHUB_APIKEY" "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/git/refs/tags/unstable" || true'
