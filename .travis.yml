@@ -9,7 +9,7 @@ script:
   - echo "So long, and thanks for all the fish." > artifact.txt
 
 before_deploy:
-  - curl -XDELETE --header "Authorization: token $GITHUB_APIKEY" "https://github.com/repos/${TRAVIS_REPO_SLUG}/git/refs/tags/unstable"
+  - curl -XDELETE --header "Authorization: token $GITHUB_APIKEY" "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/git/refs/tags/unstable" || true
   - git config --local user.name "$GITHUB_USER"
   - git config --local user.email "$GITHUB_EMAIL"
   - export TRAVIS_TAG=unstable
