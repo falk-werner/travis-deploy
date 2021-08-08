@@ -1,14 +1,19 @@
 language: minimal
 dist: bionic
 
+stages:
+  - before_deploy
+    if tag IS blank
+
 script:
   - echo "So long, and thanks for all the fish." > artifact.txt
 
 before_deploy:
+  - curl -XDELETE --header "Authorization: token $GITHUB_APIKEY" "https://github.com/repos/${TRAVIS_REPO_SLUG}/git/refs/tags/unstable"
   - git config --local user.name "$GITHUB_USER"
   - git config --local user.email "$GITHUB_EMAIL"
-  - export TRAVIS_TAG="${TRAVIS_TAG:-unstable}"
-  - git tag $TRAVIS_TAG || true
+  - export TRAVIS_TAG=unstable
+  - git tag $TRAVIS_TAG
 
 deploy:
   provider: releases
