@@ -4,12 +4,20 @@ dist: bionic
 script:
   - echo "So long, and thanks for all the fish." > my.artifact
 
+before_deploy:
+  - git config --local user.name "$GITHUB_USER"
+  - git config --local user.email "$GITHUB_EMAIL"
+  - export TRAVIS_TAG="${TRAVIS_TAG:-unstable}"
+  - git tag $TRAVIS_TAG || true
+
 deploy:
   provider: releases
   api_key: $GITHUB_APIKEY
   file:
     - my.artifact
   skip_cleanup: true
-  on:
-    tags: true
+  overwrite: true
 
+branches:
+  except:
+  - unstable
