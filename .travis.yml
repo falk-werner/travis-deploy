@@ -17,6 +17,8 @@ deploy:
     - my.artifact
   skip_cleanup: true
   overwrite: true
+  on:
+    all_branches: true
 
 branches:
   except:
