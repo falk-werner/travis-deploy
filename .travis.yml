@@ -13,7 +13,8 @@ before_deploy:
   - git config --local user.name "$GITHUB_USER"
   - git config --local user.email "$GITHUB_EMAIL"
   - export TRAVIS_TAG=unstable
-  - git tag $TRAVIS_TAG
+  - git tag -d $TRAVIS_TAG || true
+  - git tag $TRAVIS_TAG 
 
 deploy:
   provider: releases
